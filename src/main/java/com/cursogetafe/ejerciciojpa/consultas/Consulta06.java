@@ -1,9 +1,11 @@
 package com.cursogetafe.ejerciciojpa.consultas;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import com.cursogetafe.ejerciciojpa.config.Config;
 import com.cursogetafe.ejerciciojpa.modelo.Cliente;
+import com.cursogetafe.ejerciciojpa.modelo.ClienteCategoria;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -12,23 +14,14 @@ public class Consulta06 {
 	public static void main(String[] args) {
 		
 		
-		EntityManager em = Config.getEmf().createEntityManager();
+		cantClientesPorCategoria().forEach(System.out::println);
 		
-		//Buscar la cantidad de clientes por categoria
 		
-		String jpql = "select c.categoria, count(c.idRol) from Cliente c group by c.categoria";
-		
-//		TypedQuery<Cliente> q = em.createQuery(jpql, Cliente.class);
-		
-		List<Object[]> count =  em.createQuery(jpql, Object[].class).getResultList();
-		
-		for(Object[] objetos : count) {
-			System.out.println(objetos[0] + ": " + objetos[1]);
-		}
+	
 	}
 	
 	
-	public static List<Object[]> cantClientesPorCategoria() {
+	public static List<ClienteCategoria> cantClientesPorCategoria() {
 
 		EntityManager em = Config.getEmf().createEntityManager();
 		
@@ -36,9 +29,19 @@ public class Consulta06 {
 		
 		String jpql = "select c.categoria, count(c.idRol) from Cliente c group by c.categoria";
 		
-//		TypedQuery<Cliente> q = em.createQuery(jpql, Cliente.class);
+		TypedQuery<Object[]> q = em.createQuery(jpql, Object[].class);
 		
-		return  em.createQuery(jpql, Object[].class).getResultList();
+		List<Object[]> objetos = q.getResultList();
+		
+		List<ClienteCategoria> resu = new LinkedList<ClienteCategoria>();
+		
+		for(Object[] array : objetos) {
+			resu.add(new ClienteCategoria((String)array[0], (Long)array[1]));
+		}
+		
+		return resu;
+		
+		
 		
 		
 	}
