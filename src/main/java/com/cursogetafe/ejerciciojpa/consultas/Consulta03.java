@@ -24,7 +24,7 @@ public class Consulta03 {
 		
 		q.getResultList().forEach(System.out::println);
 		
-		System.out.println("--------...........-----------");
+		System.out.println("\n--------...........-----------\n");
 		
 		
 		
@@ -37,5 +37,4 @@ public class Consulta03 {
 		q.getResultList().forEach(System.out::println);
 		
 	}
-
 }
