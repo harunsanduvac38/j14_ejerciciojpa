@@ -26,5 +26,21 @@ public class Consulta06 {
 			System.out.println(objetos[0] + ": " + objetos[1]);
 		}
 	}
+	
+	
+	public static List<Object[]> cantClientesPorCategoria() {
+
+		EntityManager em = Config.getEmf().createEntityManager();
+		
+		//Buscar la cantidad de clientes por categoria
+		
+		String jpql = "select c.categoria, count(c.idRol) from Cliente c group by c.categoria";
+		
+//		TypedQuery<Cliente> q = em.createQuery(jpql, Cliente.class);
+		
+		return  em.createQuery(jpql, Object[].class).getResultList();
+		
+		
+	}
 
 }
