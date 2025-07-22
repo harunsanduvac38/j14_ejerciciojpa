@@ -1,8 +1,10 @@
 package com.cursogetafe.ejerciciojpa.pruebas;
 
+import java.lang.module.Configuration;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cursogetafe.ejerciciojpa.config.Config;
 import com.cursogetafe.ejerciciojpa.modelo.Categoria;
 import com.cursogetafe.ejerciciojpa.modelo.Cliente;
 import com.cursogetafe.ejerciciojpa.modelo.Colaborador;
@@ -17,7 +19,7 @@ import jakarta.persistence.Persistence;
 
 public class Prueba01Carga {
 	public static void main(String[] args) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ejercicioJPA");
+		EntityManagerFactory emf = Config.getEmf();
 		EntityManager em = emf.createEntityManager();
 		
 		Persona p1 = new Persona();
