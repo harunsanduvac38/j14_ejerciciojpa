@@ -6,19 +6,21 @@ import com.cursogetafe.ejerciciojpa.modelo.Cliente;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
-public class Consultas02 {
+public class Consulta03 {
 	public static void main(String[] args) {
 		
 		
-		//Buscar clientes de una categoria determinada
+		//Buscar clientes de una categoria determinada con un apellido determinado
 		
-		String categoria = "VIP";
+		String categoria = "ESPORADICO";
+		String apellidos = "Ramirez";
 		
 		EntityManager em = Config.getEmf().createEntityManager();
 		
-		String jpql = "select c from Cliente c where c.categoria = :cat";
+		String jpql = "select c from Cliente c where c.categoria = :cat and c.persona.apellidos = :ape";
 		TypedQuery<Cliente> q = em.createQuery(jpql, Cliente.class);
 		q.setParameter("cat", categoria);
+		q.setParameter("ape", apellidos);
 		
 		q.getResultList().forEach(System.out::println);
 		
@@ -26,11 +28,12 @@ public class Consultas02 {
 		
 		
 		
-		jpql = "select c from Cliente c where c.categoria = ?1";
+		jpql = "select c from Cliente c where c.categoria = ?1 and c.persona.apellidos = ?2";
 		
 		q = em.createQuery(jpql, Cliente.class);
 		
 		q.setParameter(1, categoria);
+		q.setParameter(2, apellidos);
 		q.getResultList().forEach(System.out::println);
 		
 	}
