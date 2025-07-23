@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.cursogetafe</groupId>
-  <artifactId>j14_ejerciciojpa</artifactId>
+  <artifactId>j16_agendav2</artifactId>
   <version>1.0</version>
 
-  <name>j14_ejerciciojpa</name>
-  <description>A simple j14_ejerciciojpa.</description>
+  <name>j16_agendav2</name>
+  <description>A simple j16_agendav2.</description>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
